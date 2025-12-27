@@ -92,7 +92,7 @@ The following screenshots demonstrate how the metrics appear in the actual Cloud
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/ni-ti-n/glue-monitoring-dashboards.git
 cd glue-monitoring-dashboards
 
 # Deploy Job Dashboard
