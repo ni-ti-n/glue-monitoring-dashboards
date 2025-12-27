@@ -1,0 +1,410 @@
+{
+    "variables": [
+        {
+            "type": "property",
+            "property": "JobName",
+            "inputType": "input",
+            "id": "JobName_Variable",
+            "label": "Job Name",
+            "defaultValue": "my-glue-job",
+            "visible": true
+        },
+        {
+            "type": "property",
+            "property": "JobRunId",
+            "inputType": "input",
+            "id": "JobRunId_Variable",
+            "label": "Job Run ID",
+            "defaultValue": "ALL",
+            "visible": true
+        }
+    ],
+    "widgets": [
+        {
+            "type": "text",
+            "x": 0,
+            "y": 0,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "# 🚀 AWS Glue JobRun Metric Dashboard - Enhanced Metrics View\n\n**Quick Start:** Enter your **Job Name** and **Job Run ID** above to filter all metrics. Use 'ALL' for Job Run ID to see aggregated data across all runs."
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 2,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "## 📊 Data Processing Performance - Driver Aggregate Metrics"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 3,
+            "width": 8,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.aggregate.bytesRead", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ],
+                    [ ".", "glue.driver.aggregate.recordsRead", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "📈 Data Ingestion Volume",
+                "period": 300,
+                "stat": "Sum",
+                "yAxis": {
+                    "left": {
+                        "min": 0
+                    }
+                }
+            }
+        },
+        {
+            "type": "metric",
+            "x": 8,
+            "y": 3,
+            "width": 8,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.aggregate.elapsedTime", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "⏱️ Job Execution Duration (ms)",
+                "period": 300,
+                "stat": "Sum",
+                "yAxis": {
+                    "left": {
+                        "min": 0
+                    }
+                }
+            }
+        },
+        {
+            "type": "metric",
+            "x": 16,
+            "y": 3,
+            "width": 8,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.aggregate.numCompletedStages", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ],
+                    [ ".", "glue.driver.aggregate.numCompletedTasks", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "✅ Job Progress Tracking",
+                "period": 300,
+                "stat": "Sum"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 9,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.aggregate.numFailedTasks", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ],
+                    [ ".", "glue.driver.aggregate.numKilledTasks", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "🚨 Task Failure Analysis",
+                "period": 300,
+                "stat": "Sum",
+                "yAxis": {
+                    "left": {
+                        "min": 0
+                    }
+                }
+            }
+        },
+        {
+            "type": "metric",
+            "x": 12,
+            "y": 9,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.aggregate.shuffleBytesWritten", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ],
+                    [ ".", "glue.driver.aggregate.shuffleLocalBytesRead", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "🔄 Data Shuffle Operations",
+                "period": 300,
+                "stat": "Sum"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 15,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "## 🔧 Resource Management & Capacity Planning"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 16,
+            "width": 8,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.BlockManager.disk.diskSpaceUsed_MB", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "💾 Storage Utilization (MB)",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 8,
+            "y": 16,
+            "width": 8,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.ExecutorAllocationManager.executors.numberAllExecutors", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "⚡ Active Executor Count",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 16,
+            "y": 16,
+            "width": 8,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.ExecutorAllocationManager.executors.numberMaxNeededExecutors", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "📊 Peak Executor Demand",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 22,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "## 🧠 JVM Memory Health Monitoring"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 23,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.jvm.heap.usage", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ],
+                    [ ".", "glue.ALL.jvm.heap.usage", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "📈 Memory Usage Ratio (0-1 scale)",
+                "period": 300,
+                "stat": "Average",
+                "yAxis": {
+                    "left": {
+                        "min": 0,
+                        "max": 1
+                    }
+                }
+            }
+        },
+        {
+            "type": "metric",
+            "x": 12,
+            "y": 23,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.jvm.heap.used", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ],
+                    [ ".", "glue.ALL.jvm.heap.used", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "🧠 Absolute Memory Consumption (Bytes)",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 29,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "## 📁 S3 Data Transfer Performance"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 30,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.s3.filesystem.read_bytes", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ],
+                    [ ".", "glue.ALL.s3.filesystem.read_bytes", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "📥 S3 Data Ingestion (Bytes)",
+                "period": 300,
+                "stat": "Sum"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 12,
+            "y": 30,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.s3.filesystem.write_bytes", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ],
+                    [ ".", "glue.ALL.s3.filesystem.write_bytes", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "📤 S3 Data Output (Bytes)",
+                "period": 300,
+                "stat": "Sum"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 36,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "## 🌊 Real-time Streaming Analytics (Glue 2.0+)"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 37,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.streaming.numRecords", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "📊 Streaming Record Throughput",
+                "period": 300,
+                "stat": "Sum"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 12,
+            "y": 37,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.streaming.batchProcessingTimeInMs", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "count" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "⚡ Micro-batch Latency (ms)",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 43,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "## 🖥️ System Performance & CPU Utilization"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 44,
+            "width": 24,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "Glue", "glue.driver.system.cpuSystemLoad", "JobName", "my-glue-job", "JobRunId", "ALL", "Type", "gauge" ],
+                    [ ".", "glue.ALL.system.cpuSystemLoad", ".", ".", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "us-east-1",
+                "title": "🖥️ CPU Load Distribution (0-1 scale)",
+                "period": 300,
+                "stat": "Average",
+                "yAxis": {
+                    "left": {
+                        "min": 0,
+                        "max": 1
+                    }
+                }
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 50,
+            "width": 24,
+            "height": 6,
+            "properties": {
+                "markdown": "## 📋 Enhanced Metrics Reference Guide\n\n### 🎯 Dashboard Navigation Tips\n- **Performance Issues**: Check Task Failure Analysis + Memory Usage Ratio + CPU Load\n- **Capacity Planning**: Monitor Peak Executor Demand + Storage Utilization + Memory Consumption\n- **Data Pipeline Health**: Track Data Ingestion Volume + S3 Transfer Performance + Job Duration\n- **Streaming Jobs**: Focus on Record Throughput + Micro-batch Latency (Glue 2.0+ only)\n\n### 📊 Metric Categories Overview\n**Data Processing (9 metrics):** Volume ingestion, execution time, job progress, task failures, shuffle operations  \n**Resource Management (3 metrics):** Storage usage, active executors, peak demand  \n**Memory Health (4  metrics):** Usage ratios, absolute consumption for driver and all executors  \n**S3 Performance (4 metrics):** Read/write operations for driver and executor components  \n**Streaming Analytics (2 metrics):** Record throughput and processing latency  \n**System Performance (2 metrics):** CPU load distribution across driver and executors\n\n### 🔧 Troubleshooting Quick Reference\n- **High Memory Usage (>0.8)**: Scale up executor memory or optimize data processing\n- **Task Failures**: Check data quality, resource allocation, and job logic\n- **High CPU Load (>0.7)**: Consider increasing executor count or optimizing transformations\n- **Low Throughput**: Analyze shuffle operations and S3 transfer patterns"
+            }
+        }
+    ]
+}
